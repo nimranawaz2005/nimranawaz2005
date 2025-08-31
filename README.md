@@ -1,6 +1,6 @@
 ## Hi there 👋
 
- [![MasterHead](https://raw.githubusercontent.com/nimranawaz2005/nimranawaz2005/main/masterhead.png)](https://github.com/nimranawaz2005)
+ [![MasterHead](https://www.google.com/url?sa=i&url=https%3A%2F%2Fza.pinterest.com%2Fnadyahefer%2Fscience-aesthetic%2F&psig=AOvVaw13v3I9vNRLFNXbVS4M-syS&ust=1756747750761000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCLCmluXJtY8DFQAAAAAdAAAAABAE](https://github.com/nimranawaz2005)
 
 
 <h1 align="center">Hi 👋, I'm Nimra Nawaz</h1>
