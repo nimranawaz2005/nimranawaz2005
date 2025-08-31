@@ -1,7 +1,4 @@
-
- [![MasterHead](https://www.google.com/imgres?imgurl=https://media.tenor.com/PLIr_VkF6ywAAAAM/ghostedvpn-hacker-cat.gif&imgrefurl=https://tenor.com/search/coding-gifs&h=220&w=220&tbnid=DlzlfJ24USImuM&source=sa.im&tbnh=220&tbnw=220&usg=AI4_-kSV8MQg8VxHewL3Z3kMVixJ12_-2Q&vet=1&docid=wC1y6bJ6OPI5TM](https://github.com/nimranawaz2005)
-
-
+![MasterHead](https://media.tenor.com/PLIr_VkF6ywAAAAM/ghostedvpn-hacker-cat.gif)
 <h1 align="center">Hi , I'm Nimra Nawaz</h1>
 <h3 align="center">A passionate Software Engineering student from Pakistan</h3>
 
