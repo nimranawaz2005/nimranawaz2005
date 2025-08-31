@@ -21,7 +21,8 @@ img align="right" alt="Coding" width="400" src="https://encrypted-tbn0.gstatic.c
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=nimranawaz2005&label=Profile%20views&color=0e75b6&style=flat" alt="nimranawaz2005" /> </p>
 
-<p align="left"> <a href="https://twitter.com/" target="blank"><img src="https://img.shields.io/twitter/follow/?logo=twitter&style=for-the-badge" alt="" /></a> </p>
+<p align="left"> <a href="https://twitter.com/" target="blank"><img src="![images](https://github.com/user-attachments/assets/aaead22d-e0c8-42f7-bdee-8a42adfe7be4)
+" alt="" /></a> </p>
 
 - 🔭 I’m currently working on [Web Development projects](file:///C:/Users/Nimra%20Nawaz/Downloads/pirus%20(1).html)
 
