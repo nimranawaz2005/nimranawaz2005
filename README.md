@@ -1,9 +1,8 @@
-## Hi there 👋
 
- [![MasterHead](https://www.google.com/url?sa=i&url=https%3A%2F%2Fza.pinterest.com%2Fnadyahefer%2Fscience-aesthetic%2F&psig=AOvVaw13v3I9vNRLFNXbVS4M-syS&ust=1756747750761000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCLCmluXJtY8DFQAAAAAdAAAAABAE](https://github.com/nimranawaz2005)
+ [![MasterHead](https://www.google.com/imgres?imgurl=https://media.tenor.com/PLIr_VkF6ywAAAAM/ghostedvpn-hacker-cat.gif&imgrefurl=https://tenor.com/search/coding-gifs&h=220&w=220&tbnid=DlzlfJ24USImuM&source=sa.im&tbnh=220&tbnw=220&usg=AI4_-kSV8MQg8VxHewL3Z3kMVixJ12_-2Q&vet=1&docid=wC1y6bJ6OPI5TM](https://github.com/nimranawaz2005)
 
 
-<h1 align="center">Hi 👋, I'm Nimra Nawaz</h1>
+<h1 align="center">Hi , I'm Nimra Nawaz</h1>
 <h3 align="center">A passionate Software Engineering student from Pakistan</h3>
 
 <img align="right" alt="Coding" width="400" src="https://github.com/user-attachments/assets/aa953d0d-cb5c-4681-b75e-766fc7bb5049" />
