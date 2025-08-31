@@ -1,6 +1,7 @@
 ## Hi there 👋
 
-[![MasterHead](https://1.bp.blogspot.com/-7A4WynwLsM...)](https://rishavchanda.io)
+ [![MasterHead](https://raw.githubusercontent.com/nimranawaz2005/nimranawaz2005/main/masterhead.png)](https://github.com/nimranawaz2005)
+
 
 <h1 align="center">Hi 👋, I'm Nimra Nawaz</h1>
 <h3 align="center">A passionate Software Engineering student from Pakistan</h3>
