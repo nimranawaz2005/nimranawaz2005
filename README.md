@@ -17,7 +17,8 @@ Here are some ideas to get you started:
 [![MasterHead](https://1.bp.blogspot.com/-7A4WynwLsM...)](https://rishavchanda.io)
 <h1 align="center">Hi 👋, I'm Nimra Nawaz</h1>
 <h3 align="center">A passionate Software Engineering student from Pakistan</h3>
-img align="right" alt="Coding" width="400" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVovHGYbf_BrWS44xA7tfwKcCLR8r6ne8G3g&s"
+img align="right" alt="Coding" width="400" src="(https://github.com/user-attachments/assets/aa953d0d-cb5c-4681-b75e-766fc7bb5049)"
+"
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=nimranawaz2005&label=Profile%20views&color=0e75b6&style=flat" alt="nimranawaz2005" /> </p>
 
@@ -32,13 +33,13 @@ img align="right" alt="Coding" width="400" src="https://encrypted-tbn0.gstatic.c
 
 - 🤝 I’m looking for help with **improving my frontend & backend development skills**
 
-- 👨‍💻 All of my projects are available at [GitHub And also contact me on my email if you want to check](GitHub And also contact me on my email if you want to check)
+- 👨‍💻 All of my projects are available at [GitHub And also contact me on my email if you want to check]
 
 - 💬 Ask me about **Java, C++, Web Development, SQL/MySQL,DSA**
 
 - 📫 How to reach me **nimranawaz2005@gmail.com**
 
-- 📄 Know about my experiences [Completed Internship in Web Development](Completed Internship in Web Development)
+- 📄 Know about my experiences [Completed Internship in Web Development]
 
 - ⚡ Fun fact **I love turning ideas into functional, clean code**
 - <h3 align="left">Connect with me:</h3>
