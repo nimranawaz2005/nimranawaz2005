@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dark Digital Agency — Pirus Inspired</title>
+  <meta name="description" content="An original, Pirus-inspired dark digital agency template with smooth animations and transitions. Single-file, no build tools required." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* THEME */
+      --bg: #0b0d10; /* page background */
+      --panel: #0f1217; /* surfaces */
+      --muted: #141821; /* cards */
+      --text: #e6ebf2; /* primary text */
+      --text-dim: #a8b2c1; /* secondary text */
+      --primary: #7c3aed; /* accent */
+      --primary-2: #22d3ee; /* secondary accent */
+      --line: rgba(124,58,237,.25);
+      --success: #22c55e;
+      --warning: #f59e0b;
+
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+
+      --shadow-1: 0 10px 30px rgba(0,0,0,.35);
+      --shadow-2: 0 30px 80px rgba(124,58,237,.15);
+
+      --container: 1200px;
+      --pad: clamp(16px, 4vw, 32px);
+      --gap: clamp(16px, 3vw, 28px);
+
+      --speed-1: .35s;
+      --speed-2: .6s;
+      --ease-1: cubic-bezier(.2,.7,.2,1);
+    }
+
+    /* RESET */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+
+    /* UTILITIES */
+    .container{width:min(100% - 2*var(--pad), var(--container));margin-inline:auto}
+    .grid{display:grid;gap:var(--gap)}
+    .btn{display:inline-flex;align-items:center;gap:.65rem;background:linear-gradient(135deg,var(--primary),#5b21b6);border:none;color:white;padding:.9rem 1.2rem;border-radius:999px;cursor:pointer;box-shadow:var(--shadow-2);transform:translateZ(0);transition:transform var(--speed-1) var(--ease-1), box-shadow var(--speed-1) var(--ease-1)}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(124,58,237,.35)}
+    .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text);box-shadow:none}
+    .badge{display:inline-block;padding:.35rem .65rem;border:1px solid var(--line);border-radius:999px;color:var(--primary-2);font-weight:600;letter-spacing:.02em;background:linear-gradient(180deg,rgba(34,211,238,.1),transparent)}
+    .chip{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .7rem;border-radius:999px;background:rgba(124,58,237,.12);color:#c4b5fd;border:1px solid var(--line)}
+    .muted{color:var(--text-dim)}
+    .glass{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));backdrop-filter: blur(6px);border:1px solid rgba(255,255,255,.08)}
+
+    /* APP CHROME */
+    header{position:sticky;top:0;z-index:50;background:rgba(11,13,16,.6);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:.75rem var(--pad)}
+    .brand{display:flex;align-items:center;gap:.8rem;font-weight:800;letter-spacing:.02em}
+    .brand .logo{width:34px;height:34px;border-radius:10px;background:radial-gradient(100% 100% at 0% 0%,var(--primary),#1d4ed8);box-shadow:inset 0 0 14px rgba(255,255,255,.2),0 8px 20px rgba(124,58,237,.35)}
+    .nav a{opacity:.9}
+    .nav a:hover{opacity:1}
+    .nav-menu{display:flex;gap:clamp(12px,2.8vw,26px);align-items:center}
+    .nav-menu a{font-weight:600}
+    .theme-toggle{width:44px;height:44px;border-radius:999px;display:grid;place-items:center;border:1px solid var(--line);cursor:pointer}
+
+    /* HERO */
+    .hero{position:relative;overflow:hidden}
+    .hero-wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:var(--gap);align-items:center;padding:calc(2.2rem + 2vw) 0}
+    .hero h1{font-family:Syne,Inter,system-ui,sans-serif;font-size:clamp(2.4rem,6vw,5rem);line-height:1.08;margin:0 0 .6rem}
+    .hero p{font-size:clamp(1rem,1.6vw,1.15rem);color:var(--text-dim);margin:0 0 1.2rem}
+    .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap}
+    .hero-visual{position:relative;height:100%;min-height:420px;border-radius:var(--radius-xl);background:radial-gradient(70% 70% at 70% 30%, rgba(124,58,237,.35), transparent 60%), linear-gradient(180deg, var(--muted), #0a0c10);border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow-1);overflow:hidden}
+    .hero-float{position:absolute;inset:0;pointer-events:none}
+    .orb{position:absolute;filter:blur(30px);opacity:.55;border-radius:50%}
+    .orb.one{width:240px;height:240px;left:-60px;bottom:-40px;background:conic-gradient(from 90deg,var(--primary), transparent)}
+    .orb.two{width:280px;height:280px;right:-40px;top:-60px;background:radial-gradient(circle at 40% 40%, var(--primary-2), transparent 60%)}
+    .hero-stats{position:absolute;bottom:16px;left:16px;right:16px;display:flex;gap:12px;flex-wrap:wrap}
+    .stat{flex:1;min-width:140px;padding:14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+    .stat .kpi{font-size:1.6rem;font-weight:800}
+
+    /* MARQUEE */
+    .marquee{border-block:1px solid rgba(255,255,255,.06);padding:.7rem 0;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent)}
+    .marquee .track{display:flex;gap:2.2rem;white-space:nowrap;will-change:transform;animation:scroll 22s linear infinite}
+    .marquee .item{opacity:.85}
+    @keyframes scroll{to{transform:translateX(-50%)}}
+
+    /* SECTIONS */
+    section{padding:clamp(56px,10vw,104px) 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:clamp(22px,3vw,36px);gap:var(--gap)}
+    .section-title{font-family:Syne,Inter,sans-serif;font-weight:800;font-size:clamp(1.6rem,3.6vw,2.4rem)}
+
+    /* SERVICES */
+    .services{grid-template-columns:repeat(12,1fr)}
+    .service{grid-column:span 4;min-height:220px;border-radius:18px;padding:22px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));position:relative;overflow:hidden;transition:transform var(--speed-1) var(--ease-1), border-color var(--speed-1) var(--ease-1)}
+    .service:hover{transform:translateY(-6px);border-color:rgba(124,58,237,.45)}
+    .service .icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(124,58,237,.4),rgba(34,211,238,.25));border:1px solid var(--line);box-shadow:var(--shadow-2)}
+    .service h3{margin:.9rem 0 .4rem}
+    .service p{color:var(--text-dim)}
+    .service .corner{position:absolute;right:-40px;bottom:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(124,58,237,.35), transparent 60%)}
+
+    /* SHOWCASE */
+    .showcase{grid-template-columns:repeat(12,1fr)}
+    .work{grid-column:span 6;position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:var(--muted)}
+    .work .meta{position:absolute;inset:auto 0 0 0;padding:18px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.65));display:flex;justify-content:space-between;align-items:end}
+    .work h4{margin:0;font-size:1.1rem}
+    .work .tag{padding:.35rem .6rem;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(0,0,0,.35)}
+    .work img{aspect-ratio:16/10;object-fit:cover;filter:saturate(1.1);transition:transform var(--speed-2) var(--ease-1)}
+    .work:hover img{transform:scale(1.06)}
+
+    /* COUNTERS */
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+    .kpi-card{border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:22px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));text-align:center}
+    .kpi-card .num{font-size:clamp(2rem,5vw,3rem);font-weight:900;letter-spacing:.02em}
+
+    /* TESTIMONIALS */
+    .testi-wrap{display:grid;grid-template-columns:1fr .8fr;gap:var(--gap)}
+    .testi{position:relative;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;background:radial-gradient(80% 120% at 20% 0%,rgba(124,58,237,.2),transparent),linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02))}
+    .testi .quote{font-size:clamp(1.1rem,2vw,1.35rem)}
+    .testi .who{margin-top:10px;display:flex;align-items:center;gap:10px}
+    .testi .who img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+
+    /* PRICING */
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+    .plan{border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));display:flex;flex-direction:column}
+    .plan .head{padding:24px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .plan .price{font-size:2.2rem;font-weight:900}
+    .plan .body{padding:20px;display:grid;gap:10px}
+    .plan .feat{display:flex;align-items:center;gap:8px}
+    .plan .feat::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--success)}
+    .plan .foot{padding:20px;border-top:1px solid rgba(255,255,255,.06)}
+    .plan.pop{border-color:rgba(124,58,237,.6);box-shadow:0 16px 60px rgba(124,58,237,.25)}
+
+    /* TEAM */
+    .team{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+    .person{position:relative;border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;background:var(--muted)}
+    .person img{aspect-ratio:1/1;object-fit:cover;transition:transform var(--speed-2) var(--ease-1)}
+    .person:hover img{transform:scale(1.06)}
+    .person .meta{padding:14px}
+
+    /* CONTACT */
+    .contact{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--gap)}
+    .form{border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:22px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02))}
+    .form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .field{display:grid;gap:6px}
+    .field input,.field textarea, .field select{background:#0c0f14;color:var(--text);border:1px solid rgba(255,255,255,.08);padding:12px 14px;border-radius:12px}
+    .field textarea{min-height:130px;resize:vertical}
+
+    /* FOOTER */
+    footer{border-top:1px solid rgba(255,255,255,.06);padding:34px 0 60px;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent)}
+    .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:var(--gap)}
+    .foot small{color:var(--text-dim)}
+
+    /* REVEAL ANIMATIONS */
+    [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity var(--speed-2) var(--ease-1), transform var(--speed-2) var(--ease-1)}
+    [data-reveal].in{opacity:1;transform:none}
+
+    /* MEDIA */
+    @media (max-width: 1024px){
+      .hero-wrap{grid-template-columns:1fr}
+      .testi-wrap{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .pricing{grid-template-columns:repeat(2,1fr)}
+      .team{grid-template-columns:repeat(2,1fr)}
+      .kpis{grid-template-columns:repeat(2,1fr)}
+      .services .service{grid-column:span 6}
+      .showcase .work{grid-column:span 12}
+      .foot-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .pricing{grid-template-columns:1fr}
+      .services .service{grid-column:span 12}
+    }
+
+    /* ACCESSIBILITY */
+    @media (prefers-reduced-motion: reduce){
+      .marquee .track{animation:none}
+      .btn, .work img, .person img{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <nav class="nav container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>NovaPirus</span>
+      </div>
+      <div class="nav-menu">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.364 6.364l-1.414-1.414M6.05 6.05 4.636 4.636m12.728 0-1.414 1.414M6.05 17.95l-1.414 1.414" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <a href="#contact" class="btn">Get Proposal</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero container">
+    <div class="hero-wrap">
+      <div class="hero-copy" data-reveal>
+        <span class="badge">Dark • Digital • Agency</span>
+        <h1>We craft dazzling brands & high‑performing websites.</h1>
+        <p>Strategy, design, and engineering in one nimble team. We blend motion, micro‑interactions, and performance to grow your product.</p>
+        <div class="hero-actions">
+          <a href="#work" class="btn">View Case Studies</a>
+          <a href="#services" class="btn ghost">Our Services</a>
+          <span class="chip" aria-live="polite"><strong>98%</strong> client satisfaction</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true" data-parallax>
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1600&auto=format&fit=crop" alt="Dashboard preview" style="width:100%;height:100%;object-fit:cover;opacity:.9;mix-blend:screen">
+        <div class="hero-float">
+          <div class="orb one"></div>
+          <div class="orb two"></div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="kpi">240+</div>
+            <div class="muted">Successful Projects</div>
+          </div>
+          <div class="stat">
+            <div class="kpi">12yrs</div>
+            <div class="muted">In Business</div>
+          </div>
+          <div class="stat">
+            <div class="kpi">4.9★</div>
+            <div class="muted">Average Rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-label="Our partners">
+    <div class="container">
+      <div class="track" role="list">
+        <span class="item" role="listitem">Stripe</span>
+        <span class="item">Figma</span>
+        <span class="item">Webflow</span>
+        <span class="item">Notion</span>
+        <span class="item">Framer</span>
+        <span class="item">Vercel</span>
+        <span class="item">Shopify</span>
+        <span class="item">Google</span>
+        <span class="item">Adobe</span>
+        <span class="item">AWS</span>
+        <span class="item">Stripe</span>
+        <span class="item">Figma</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services" class="container">
+    <div class="section-head">
+      <h2 class="section-title">What we do</h2>
+      <p class="muted">From idea to launch. We ship fast and iterate faster.</p>
+    </div>
+    <div class="grid services">
+      <article class="service" data-tilt data-reveal>
+        <div class="icon">💡</div>
+        <h3>Brand Strategy</h3>
+        <p>Positioning, voice, and a future‑proof identity system.</p>
+        <div class="corner"></div>
+      </article>
+      <article class="service" data-tilt data-reveal>
+        <div class="icon">🎨</div>
+        <h3>Product Design</h3>
+        <p>Accessible, conversion‑focused UI/UX with micro‑interactions.</p>
+        <div class="corner"></div>
+      </article>
+      <article class="service" data-tilt data-reveal>
+        <div class="icon">⚡</div>
+        <h3>Web Engineering</h3>
+        <p>Jamstack, headless CMS, and delightful performance budgets.</p>
+        <div class="corner"></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SHOWCASE -->
+  <section id="work" class="container">
+    <div class="section-head">
+      <h2 class="section-title">Recent work</h2>
+      <div class="chip">Hand‑picked case studies</div>
+    </div>
+    <div class="grid showcase">
+      <a class="work" href="#" data-reveal>
+        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1600&auto=format&fit=crop" alt="App analytics">
+        <div class="meta">
+          <h4>Pulse Analytics</h4>
+          <span class="tag">SaaS • Branding • Web</span>
+        </div>
+      </a>
+      <a class="work" href="#" data-reveal>
+        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1600&auto=format&fit=crop" alt="Commerce">
+        <div class="meta">
+          <h4>Orb Commerce</h4>
+          <span class="tag">E‑com • Headless • CRO</span>
+        </div>
+      </a>
+      <a class="work" href="#" data-reveal>
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1600&auto=format&fit=crop" alt="Dev platform">
+        <div class="meta">
+          <h4>DevCloud</h4>
+          <span class="tag">Platform • Docs • DX</span>
+        </div>
+      </a>
+      <a class="work" href="#" data-reveal>
+        <img src="https://images.unsplash.com/photo-1547658719-f77ab9f9b0c3?q=80&w=1600&auto=format&fit=crop" alt="Neon grid">
+        <div class="meta">
+          <h4>Neon Grid</h4>
+          <span class="tag">Web • Motion • 3D</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- KPIS -->
+  <section class="container">
+    <div class="kpis">
+      <div class="kpi-card" data-reveal>
+        <div class="num" data-counter="120">0</div>
+        <div class="muted">Brands launched</div>
+      </div>
+      <div class="kpi-card" data-reveal>
+        <div class="num" data-counter="2.8" data-suffix="x">0</div>
+        <div class="muted">Average conversion lift</div>
+      </div>
+      <div class="kpi-card" data-reveal>
+        <div class="num" data-counter="98" data-suffix="%">0</div>
+        <div class="muted">NPS • Client satisfaction</div>
+      </div>
+      <div class="kpi-card" data-reveal>
+        <div class="num" data-counter="36">0</div>
+        <div class="muted">Awards & recognitions</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS / SIDEBAR BLOG -->
+  <section class="container">
+    <div class="testi-wrap">
+      <article class="testi" data-reveal>
+        <p class="quote">“They think in systems, sweat the details, and ship faster than anyone we’ve worked with.”</p>
+        <div class="who">
+          <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=300&auto=format&fit=crop" alt="Client portrait">
+          <div>
+            <strong>Amara Iqbal</strong>
+            <div class="muted">VP Product, HelixAI</div>
+          </div>
+        </div>
+      </article>
+      <aside class="grid" style="gap:12px">
+        <a class="testi" href="#" data-reveal>
+          <h3 style="margin:0 0 8px">Design Systems that Scale</h3>
+          <p class="muted">How we craft multi‑brand systems with tokens & primitives.</p>
+        </a>
+        <a class="testi" href="#" data-reveal>
+          <h3 style="margin:0 0 8px">Speed as a Feature</h3>
+          <p class="muted">A practical performance budget for marketing sites.</p>
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="container">
+    <div class="section-head">
+      <h2 class="section-title">Engagements</h2>
+      <p class="muted">Transparent pricing that scales with your ambition.</p>
+    </div>
+    <div class="pricing">
+      <article class="plan" data-reveal>
+        <div class="head">
+          <h3>Starter</h3>
+          <div class="muted">For early‑stage ideas</div>
+        </div>
+        <div class="body">
+          <div class="price">$4k</div>
+          <div class="feat">1‑week discovery sprint</div>
+          <div class="feat">Brand lite kit</div>
+          <div class="feat">Landing page • 1 section</div>
+          <div class="feat">Email support</div>
+        </div>
+        <div class="foot"><a class="btn ghost" href="#contact">Get Started</a></div>
+      </article>
+      <article class="plan pop" data-reveal>
+        <div class="head">
+          <h3>Growth</h3>
+          <div class="muted">Most popular</div>
+        </div>
+        <div class="body">
+          <div class="price">$12k</div>
+          <div class="feat">3‑week design + build</div>
+          <div class="feat">Design system & tokens</div>
+          <div class="feat">Marketing site • 6 pages</div>
+          <div class="feat">Priority support</div>
+        </div>
+        <div class="foot"><a class="btn" href="#contact">Book a Slot</a></div>
+      </article>
+      <article class="plan" data-reveal>
+        <div class="head">
+          <h3>Enterprise</h3>
+          <div class="muted">Complex needs</div>
+        </div>
+        <div class="body">
+          <div class="price">Custom</div>
+          <div class="feat">R&D, 3D, integrations</div>
+          <div class="feat">Headless CMS & CI/CD</div>
+          <div class="feat">A/B testing & CRO</div>
+          <div class="feat">Dedicated team</div>
+        </div>
+        <div class="foot"><a class="btn ghost" href="#contact">Talk to us</a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="container">
+    <div class="section-head">
+      <h2 class="section-title">Team</h2>
+      <p class="muted">Small, senior, and hands‑on.</p>
+    </div>
+    <div class="team">
+      <article class="person" data-reveal>
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop" alt="Creative Director">
+        <div class="meta">
+          <strong>Hassan Ali</strong>
+          <div class="muted">Creative Director</div>
+        </div>
+      </article>
+      <article class="person" data-reveal>
+        <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=1200&auto=format&fit=crop" alt="Design Lead">
+        <div class="meta">
+          <strong>Nimra Nawaz</strong>
+          <div class="muted">Design Lead</div>
+        </div>
+      </article>
+      <article class="person" data-reveal>
+        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1200&auto=format&fit=crop" alt="Engineering Lead">
+        <div class="meta">
+          <strong>Haris Khan</strong>
+          <div class="muted">Engineering Lead</div>
+        </div>
+      </article>
+      <article class="person" data-reveal>
+        <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=1200&auto=format&fit=crop" alt="Motion Designer">
+        <div class="meta">
+          <strong>Alina Tariq</strong>
+          <div class="muted">Motion Designer</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container">
+    <div class="section-head">
+      <h2 class="section-title">Tell us about your project</h2>
+      <p class="muted">We usually reply within 24 hours.</p>
+    </div>
+    <div class="contact">
+      <form class="form" onsubmit="event.preventDefault(); alert('Thanks! We\'ll get back to you shortly.');">
+        <div class="row">
+          <label class="field">Name
+            <input required placeholder="Jane Doe" />
+          </label>
+          <label class="field">Email
+            <input required type="email" placeholder="jane@company.com" />
+          </label>
+        </div>
+        <div class="row">
+          <label class="field">Budget
+            <select>
+              <option>Under $5k</option>
+              <option>$5k – $15k</option>
+              <option>$15k – $50k</option>
+              <option>$50k+</option>
+            </select>
+          </label>
+          <label class="field">Timeline
+            <input placeholder="e.g. 4–6 weeks" />
+          </label>
+        </div>
+        <label class="field">Project details
+          <textarea placeholder="Scope, goals, references..."></textarea>
+        </label>
+        <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:10px">
+          <label style="display:flex;align-items:center;gap:8px" class="muted"><input type="checkbox" checked> Subscribe to insights</label>
+          <button class="btn">Request Proposal</button>
+        </div>
+      </form>
+      <div class="grid" style="gap:12px">
+        <div class="testi" data-reveal>
+          <h3 style="margin:0 0 8px">FAQs</h3>
+          <p class="muted">We rarely miss deadlines. IP and code are yours. We can work async‑first and join your standups if you prefer.</p>
+        </div>
+        <div class="testi" data-reveal>
+          <h3 style="margin:0 0 8px">Contact</h3>
+          <p class="muted">hello@novapirus.studio<br>+92 300 0000000</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:10px"><div class="logo"></div><strong>NovaPirus</strong></div>
+        <small>© <span id="year"></span> NovaPirus Studio. All rights reserved.</small>
+      </div>
+      <div>
+        <strong>Company</strong>
+        <ul style="list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px">
+          <li><a href="#team">About</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong>Resources</strong>
+        <ul style="list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px">
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Guides</a></li>
+          <li><a href="#">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong>Social</strong>
+        <ul style="list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px">
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Dribbble</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky header shadow on scroll
+    const header = document.querySelector('header');
+    const onScroll = () => {
+      const sc = window.scrollY;
+      header.style.boxShadow = sc > 10 ? '0 8px 30px rgba(0,0,0,.25)' : 'none';
+    };
+    document.addEventListener('scroll', onScroll, {passive:true});
+
+    // IntersectionObserver for reveal
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      })
+    },{threshold:.15});
+    revealEls.forEach(el=>io.observe(el));
+
+    // Parallax hero image
+    const par = document.querySelector('[data-parallax]');
+    let raf;
+    const parallax = ()=>{
+      const rect = par.getBoundingClientRect();
+      const factor = Math.min(Math.max((rect.top/innerHeight), -1), 1);
+      par.style.transform = `translateY(${factor* -20}px)`;
+      raf = requestAnimationFrame(parallax);
+    };
+    if(par) raf = requestAnimationFrame(parallax);
+
+    // Magnetic buttons effect
+    const magnets = document.querySelectorAll('.btn');
+    magnets.forEach(btn=>{
+      btn.addEventListener('mousemove', (e)=>{
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width/2;
+        const y = e.clientY - r.top - r.height/2;
+        btn.style.transform = `translate(${x*0.06}px, ${y*0.06}px)`;
+      });
+      btn.addEventListener('mouseleave', ()=>{
+        btn.style.transform = '';
+      });
+    });
+
+    // Tilt cards
+    const tilts = document.querySelectorAll('[data-tilt]');
+    tilts.forEach(card=>{
+      let moving = false;
+      card.addEventListener('pointermove', (e)=>{
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left)/r.width - .5;
+        const y = (e.clientY - r.top)/r.height - .5;
+        if(!moving){
+          moving = true;
+          card.style.transition = 'transform .05s';
+        }
+        card.style.transform = `rotateX(${(-y*6).toFixed(2)}deg) rotateY(${(x*8).toFixed(2)}deg) translateY(-6px)`;
+      });
+      card.addEventListener('pointerleave', ()=>{
+        moving = false;
+        card.style.transition = '';
+        card.style.transform = '';
+      });
+    });
+
+    // Counters
+    const counters = document.querySelectorAll('[data-counter]');
+    const animateCounter = (el)=>{
+      const end = parseFloat(el.dataset.counter);
+      const suffix = el.dataset.suffix || '';
+      const dur = 900;
+      const start = performance.now();
+      const step = (now)=>{
+        const p = Math.min(1, (now-start)/dur);
+        const val = (end*p).toFixed(end % 1 ? 1 : 0);
+        el.textContent = val + suffix;
+        if(p<1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const io2 = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ animateCounter(e.target); io2.unobserve(e.target);} })
+    },{threshold:.6});
+    counters.forEach(c=>io2.observe(c));
+
+    // Theme toggle (light/dark accent twist)
+    const toggle = document.querySelector('.theme-toggle');
+    toggle.addEventListener('click',()=>{
+      const root = document.documentElement;
+      const current = getComputedStyle(root).getPropertyValue('--primary').trim();
+      // swap primary & cyan accent
+      root.style.setProperty('--primary', 'var(--primary-2)');
+      root.style.setProperty('--primary-2', current);
+    });
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Civi-style (Tailwind CDN)</title> 
+
+  <!-- Tailwind CDN -->
+  <script>
+    // Tailwind config injection for custom colors & fonts
+    tailwind = {
+      config: {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              civi: {
+                50: '#f5f3ff',
+                100: '#ede9fe',
+                200: '#ddd6fe',
+                300: '#c4b5fd',
+                400: '#a78bfa',
+                500: '#8b5cf6',
+                600: '#6d28d9',
+                700: '#5b21b6',
+                800: '#4c1d95',
+                900: '#3a0f63'
+              }
+            },
+            boxShadow: {
+              'civi-lg': '0 20px 40px rgba(15,23,42,0.08)',
+              'civi-md': '0 10px 30px rgba(15,23,42,0.06)'
+            },
+            borderRadius: {
+              'xl2': '18px'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial']
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* small extra styles for micro animations */
+    .grad-text {
+      background: linear-gradient(90deg,#f472b6,#7c3aed,#4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+    }
+    .glass {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(6px);
+    }
+    /* subtle entrance */
+    .enter { transform: translateY(12px); opacity: 0; transition: all .6s cubic-bezier(.2,.9,.2,1); }
+    .enter.in { transform: none; opacity: 1; }
+    /* mobile nav slide */
+    .mobile-nav { transform: translateY(-6px); transition: transform .28s ease, opacity .28s ease; opacity:0; pointer-events:none; }
+    .mobile-nav.open { transform: translateY(0); opacity:1; pointer-events:auto; }
+  </style>
+</head>
+<body class="antialiased text-gray-900 bg-white">
+
+  <!-- HEADER -->
+  <header id="siteHeader" class="fixed inset-x-0 top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 py-3 transition-all duration-300">
+        <div class="flex items-center gap-4">
+          <a href="#" class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-civi-500 to-civi-600 shadow-civi-md"></div>
+            <span class="font-semibold text-lg">Civi</span>
+          </a>
+
+          <!-- desktop nav -->
+          <nav id="mainNav" class="hidden md:flex items-center gap-6 text-sm text-gray-600">
+            <a class="hover:text-civi-700 transition" href="#jobs">Jobs</a>
+            <a class="hover:text-civi-700 transition" href="#categories">Categories</a>
+            <a class="hover:text-civi-700 transition" href="#companies">Companies</a>
+            <a class="hover:text-civi-700 transition" href="#blog">Blog</a>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- CTAs -->
+          <button class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 text-sm hover:bg-gray-50 transition">Sign in</button>
+          <button class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-civi-600 to-civi-500 shadow-civi-md hover:opacity-95 transition">Post a Job</button>
+
+          <!-- Mobile menu button -->
+          <button id="mobileToggle" aria-label="Open menu" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition">
+            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- mobile nav -->
+    <div id="mobileNav" class="mobile-nav md:hidden bg-white border-t border-gray-100 shadow" aria-hidden="true">
+      <div class="px-4 pt-4 pb-6">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-civi-500 to-civi-600"></div>
+            <div class="font-semibold">Civi</div>
+          </div>
+          <button id="mobileClose" class="p-1 rounded-md hover:bg-gray-100">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <nav class="grid gap-3">
+          <a href="#jobs" class="px-3 py-2 rounded-md hover:bg-gray-50">Jobs</a>
+          <a href="#categories" class="px-3 py-2 rounded-md hover:bg-gray-50">Categories</a>
+          <a href="#companies" class="px-3 py-2 rounded-md hover:bg-gray-50">Companies</a>
+          <a href="#blog" class="px-3 py-2 rounded-md hover:bg-gray-50">Blog</a>
+        </nav>
+
+        <div class="mt-4 flex gap-3">
+          <button class="flex-1 px-4 py-2 rounded-lg border border-gray-200">Sign in</button>
+          <button class="flex-1 px-4 py-2 rounded-lg text-white bg-gradient-to-r from-civi-600 to-civi-500">Post a job</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-20">
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-10 items-center py-20">
+          <!-- left -->
+          <div class="enter" id="heroLeft">
+            <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
+              Find your next <span class="grad-text">dream job</span> faster.
+            </h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-xl">
+              Search thousands of curated roles from top companies. Filter by role, location, and work-style.
+            </p>
+
+            <!-- search panel -->
+            <div class="mt-8">
+              <form id="searchForm" class="flex gap-3 items-center bg-white rounded-2xl shadow-civi-md p-3 border border-gray-100">
+                <div class="flex items-center gap-3 pl-3 pr-2">
+                  <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.6"/></svg>
+                </div>
+
+                <input id="qInput" type="text" placeholder="Job title, keywords or company" class="flex-1 text-sm outline-none px-1 py-3 bg-transparent" />
+
+                <select id="locSelect" class="text-sm border-l border-gray-100 pl-3 pr-3 bg-transparent h-10">
+                  <option>Remote</option>
+                  <option>Karachi</option>
+                  <option>Lahore</option>
+                  <option>Islamabad</option>
+                  <option>Rawalpindi</option>
+                </select>
+
+                <button id="searchBtn" type="submit" class="ml-2 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-civi-600 to-civi-500 hover:opacity-95">
+                  Search Jobs
+                </button>
+              </form>
+
+              <div class="mt-3 flex flex-wrap gap-2 text-sm text-gray-500">
+                <span class="px-3 py-1 rounded-full bg-civi-50 text-civi-700 font-medium">Designer</span>
+                <span class="px-3 py-1 rounded-full bg-civi-50 text-civi-700 font-medium">React</span>
+                <span class="px-3 py-1 rounded-full bg-civi-50 text-civi-700 font-medium">Remote</span>
+              </div>
+
+              <div class="mt-6 flex gap-3">
+                <div class="bg-white rounded-xl p-3 shadow-civi-md border border-gray-100">
+                  <div class="text-xl font-bold">25k+</div>
+                  <div class="text-sm text-gray-500">Active jobs</div>
+                </div>
+                <div class="bg-white rounded-xl p-3 shadow-civi-md border border-gray-100">
+                  <div class="text-xl font-bold">8.2k</div>
+                  <div class="text-sm text-gray-500">Companies</div>
+                </div>
+                <div class="bg-white rounded-xl p-3 shadow-civi-md border border-gray-100">
+                  <div class="text-xl font-bold">1.2M</div>
+                  <div class="text-sm text-gray-500">Applicants</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- right visual -->
+          <div class="enter" id="heroRight">
+            <div class="relative rounded-xl overflow-hidden shadow-civi-lg">
+              <img src="https://images.unsplash.com/photo-1524567493598-47d2b0b3b2c6?q=80&w=1600&auto=format&fit=crop" alt="hero" class="w-full h-80 object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+              <div class="absolute left-5 right-5 bottom-5 bg-white/90 rounded-lg p-3 flex items-center gap-3 shadow border border-gray-100">
+                <div class="bg-white w-10 h-10 rounded-lg flex items-center justify-center">
+                  <svg class="w-5 h-5 text-civi-700" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v4" stroke="currentColor" stroke-width="1.6"/></svg>
+                </div>
+                <div class="flex-1">
+                  <div class="font-semibold">BrightSail • 16 open roles</div>
+                  <div class="text-sm text-gray-500">Featured company</div>
+                </div>
+                <button class="px-3 py-2 rounded-xl border border-gray-200 text-sm hover:bg-gray-50 transition">View roles →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section id="categories" class="py-12 enter">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <h2 class="text-2xl font-bold">Explore categories</h2>
+            <p class="text-sm text-gray-500 mt-1">Pick a track to narrow your search.</p>
+          </div>
+          <div>
+            <button id="clearCat" class="text-sm text-civi-700 hidden md:inline-block">Clear filter</button>
+          </div>
+        </div>
+
+        <div id="catsGrid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- FEATURED JOBS -->
+    <section id="jobs" class="py-12 enter">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <h2 class="text-2xl font-bold">Featured jobs</h2>
+            <p class="text-sm text-gray-500 mt-1">Curated roles from trusted companies.</p>
+          </div>
+          <a href="#" class="text-sm text-civi-700 font-semibold">Browse all →</a>
+        </div>
+
+        <div id="jobsGrid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- COMPANIES CAROUSEL -->
+    <section id="companies" class="py-12 enter">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-bold">Featured companies</h2>
+            <p class="text-sm text-gray-500 mt-1">Top-rated teams hiring now.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="prevComp" class="p-2 rounded-lg border border-gray-100 hover:bg-gray-50"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button id="nextComp" class="p-2 rounded-lg border border-gray-100 hover:bg-gray-50"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+
+        <div id="companiesGrid" class="mt-6 flex gap-4 overflow-hidden"></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12 enter">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-r from-civi-600 to-civi-500 text-white rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-4 shadow-civi-lg">
+          <div>
+            <h3 class="text-2xl font-extrabold">Hire faster with Civi</h3>
+            <p class="mt-2 text-sm text-white/90 max-w-md">Post a job and reach qualified candidates in minutes. Smart matching and beautiful listings included.</p>
+          </div>
+          <div class="flex gap-3">
+            <button class="px-4 py-2 rounded-xl bg-white text-gray-900 font-semibold">Post a job</button>
+            <button class="px-4 py-2 rounded-xl border border-white/30">Learn more</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog" class="py-12 enter">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-bold">From the blog</h2>
+            <p class="text-sm text-gray-500 mt-1">Guides, hiring tips, and product updates.</p>
+          </div>
+          <a href="#" class="text-sm text-civi-700 font-semibold">View all →</a>
+        </div>
+
+        <div id="blogGrid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-gray-100 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-civi-500 to-civi-600"></div>
+            <div class="font-semibold">Civi</div>
+          </div>
+          <p class="mt-3 text-sm text-gray-500 max-w-xs">A modern job marketplace connecting top talent with world-class teams.</p>
+        </div>
+
+        <div>
+          <h4 class="font-semibold">For candidates</h4>
+          <ul class="mt-3 space-y-2 text-sm text-gray-500">
+            <li>Browse jobs</li>
+            <li>Saved jobs</li>
+            <li>Job alerts</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold">For employers</h4>
+          <ul class="mt-3 space-y-2 text-sm text-gray-500">
+            <li>Post a job</li>
+            <li>Pricing</li>
+            <li>Talent search</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold">Company</h4>
+          <ul class="mt-3 space-y-2 text-sm text-gray-500">
+            <li>About</li>
+            <li>Blog</li>
+            <li>Contact</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 flex items-center justify-between text-sm text-gray-500">
+        <div>© <span id="year"></span> Civi. All rights reserved.</div>
+        <div class="flex gap-4">
+          <div>Privacy</div>
+          <div>Terms</div>
+          <div>Cookies</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT: data + interactivity -->
+  <script>
+    // ---------- sample data ----------
+    const categories = [
+      {id:'design',label:'Design', jobs:182, icon:'🎨'},
+      {id:'dev',label:'Development', jobs:356, icon:'💻'},
+      {id:'marketing',label:'Marketing', jobs:129, icon:'📣'},
+      {id:'sales',label:'Sales', jobs:94, icon:'🤝'},
+      {id:'product',label:'Product', jobs:77, icon:'✅'},
+      {id:'hr',label:'HR', jobs:53, icon:'🧑‍🤝‍🧑'}
+    ];
+
+    const companies = [
+      {id:'pixeltide', name:'Pixeltide', logo:'https://images.unsplash.com/photo-1549921296-3a6b3ab0f7d3?q=80&w=400&auto=format&fit=crop', rating:4.8, open:12},
+      {id:'cloudora', name:'Cloudora', logo:'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=400&auto=format&fit=crop', rating:4.6, open:8},
+      {id:'brightsail', name:'BrightSail', logo:'https://images.unsplash.com/photo-1560179707-f14e90ef1f22?q=80&w=400&auto=format&fit=crop', rating:4.9, open:16},
+      {id:'quantflux', name:'QuantFlux', logo:'https://images.unsplash.com/photo-1527613426441-4da17471b66d?q=80&w=400&auto=format&fit=crop', rating:4.7, open:5}
+    ];
+
+    const jobs = [
+      {id:1,title:'Senior Product Designer',company:'Pixeltide',location:'Remote', type:'Full-time', tags:['Figma','UI/UX','Design Systems'], salary:'PKR 350k – 500k', logo:companies[0].logo, category:'design', posted:'2 days ago'},
+      {id:2,title:'Frontend Engineer (React)',company:'Cloudora',location:'Islamabad', type:'Hybrid', tags:['React','TypeScript','Tailwind'], salary:'PKR 300k – 450k', logo:companies[1].logo, category:'dev', posted:'Today'},
+      {id:3,title:'Growth Marketing Manager',company:'BrightSail',location:'Lahore', type:'Full-time', tags:['SEO','Paid Ads','Analytics'], salary:'PKR 280k – 380k', logo:companies[2].logo, category:'marketing', posted:'1 day ago'},
+      {id:4,title:'Product Manager',company:'QuantFlux',location:'Karachi', type:'Onsite', tags:['Agile','Roadmaps','User Research'], salary:'PKR 320k – 480k', logo:companies[3].logo, category:'product', posted:'4 days ago'},
+      {id:5,title:'HR Business Partner',company:'Pixeltide',location:'Rawalpindi', type:'Full-time', tags:['Hiring','Culture','Comp & Ben'], salary:'PKR 200k – 280k', logo:companies[0].logo, category:'hr', posted:'6 days ago'},
+      {id:6,title:'Enterprise Account Executive',company:'Cloudora',location:'Remote', type:'Remote', tags:['B2B','SaaS','Negotiation'], salary:'PKR 400k – 650k + OTE', logo:companies[1].logo, category:'sales', posted:'3 days ago'}
+    ];
+
+    const posts = [
+      {title:'Ace your next product interview', img:'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop', date:'Aug 10, 2025'},
+      {title:'Remote work: best practices in 2025', img:'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop', date:'Aug 2, 2025'},
+      {title:'Design systems that scale', img:'https://images.unsplash.com/photo-1551281044-8d8c5aa0dfc5?q=80&w=1200&auto=format&fit=crop', date:'Jul 19, 2025'}
+    ];
+
+    // ---------- DOM references ----------
+    const catsGrid = document.getElementById('catsGrid');
+    const jobsGrid = document.getElementById('jobsGrid');
+    const companiesGrid = document.getElementById('companiesGrid');
+    const blogGrid = document.getElementById('blogGrid');
+    const clearCatBtn = document.getElementById('clearCat');
+    const qInput = document.getElementById('qInput');
+    const locSelect = document.getElementById('locSelect');
+    const searchBtn = document.getElementById('searchBtn');
+    const searchForm = document.getElementById('searchForm');
+
+    let activeCategory = null;
+
+    // ---------- populate categories ----------
+    function renderCategories(){
+      catsGrid.innerHTML = '';
+      categories.forEach((c, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'group bg-white border border-gray-100 rounded-2xl p-4 flex items-center gap-4 hover:shadow-civi-md transition';
+        btn.innerHTML = `
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center text-white font-semibold" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">${c.icon}</div>
+          <div class="text-left">
+            <div class="font-semibold">${c.label}</div>
+            <div class="text-sm text-gray-500">${c.jobs} open roles</div>
+          </div>
+        `;
+        btn.onclick = () => {
+          // toggle
+          activeCategory = activeCategory === c.id ? null : c.id;
+          // highlight
+          document.querySelectorAll('#catsGrid > button').forEach(n => n.classList.remove('ring-2','ring-civi-500','scale-[1.01]'));
+          if(activeCategory){
+            btn.classList.add('ring-2','ring-civi-500','scale-[1.01]');
+          }
+          filterAndRenderJobs();
+        };
+        catsGrid.appendChild(btn);
+      });
+    }
+
+    // ---------- render jobs ----------
+    function renderJobs(list){
+      jobsGrid.innerHTML = '';
+      if(list.length === 0){
+        jobsGrid.innerHTML = `<div class="text-gray-500">No jobs found.</div>`;
+        return;
+      }
+      list.forEach(j => {
+        const el = document.createElement('article');
+        el.className = 'bg-white border border-gray-100 rounded-2xl p-4 shadow transition hover:shadow-civi-md';
+        el.innerHTML = `
+          <div class="flex gap-3 items-center">
+            <img src="${j.logo}" class="w-14 h-14 rounded-lg object-cover border" alt="${j.company}"/>
+            <div class="min-w-0">
+              <div class="font-semibold truncate">${j.title}</div>
+              <div class="text-sm text-gray-500">${j.company} • ${j.type}</div>
+            </div>
+            <button class="ml-auto text-gray-400 hover:text-red-500">♡</button>
+          </div>
+          <div class="mt-3 flex items-center gap-2 text-sm text-gray-500">
+            <div class="flex items-center gap-1"><svg class="w-3 h-3" viewBox="0 0 24 24" fill="none"><path d="M12 2v4" stroke="currentColor" stroke-width="1.4"/></svg>${j.location}</div>
+            <div>• ${j.posted}</div>
+            <div class="font-semibold ml-auto">${j.salary}</div>
+          </div>
+          <div class="mt-3 flex flex-wrap gap-2">
+            ${j.tags.map(t => `<span class="text-xs bg-gray-100 px-2 py-1 rounded-full">${t}</span>`).join('')}
+          </div>
+          <div class="mt-4 flex items-center justify-between">
+            <button class="text-civi-700 font-semibold">View details →</button>
+            <button class="px-3 py-2 rounded-xl text-white bg-gradient-to-r from-civi-600 to-civi-500">Apply now</button>
+          </div>
+        `;
+        jobsGrid.appendChild(el);
+      });
+    }
+
+    // ---------- render companies (carousel-like) ----------
+    let compIndex = 0;
+    function renderCompanies(){
+      companiesGrid.innerHTML = '';
+      const per = window.innerWidth < 680 ? 1 : 2;
+      const start = compIndex * per;
+      const slice = companies.slice(start, start + per);
+      if(slice.length === 0){
+        compIndex = 0;
+        return renderCompanies();
+      }
+      slice.forEach(c => {
+        const el = document.createElement('div');
+        el.className = 'min-w-[260px] bg-white border border-gray-100 rounded-2xl p-3 shadow hover:shadow-civi-md transition';
+        el.innerHTML = `
+          <div class="flex items-center gap-3">
+            <img src="${c.logo}" alt="${c.name}" class="w-12 h-12 rounded-lg object-cover">
+            <div>
+              <div class="font-semibold">${c.name}</div>
+              <div class="flex items-center gap-2 text-sm text-gray-500">
+                <div class="text-yellow-500">${'★'.repeat(Math.round(c.rating))}</div>
+                <div>${c.rating}</div>
+              </div>
+            </div>
+            <div class="ml-auto text-sm text-gray-500">${c.open} open roles</div>
+          </div>
+        `;
+        companiesGrid.appendChild(el);
+      });
+    }
+
+    // ---------- render blog ----------
+    function renderBlog(){
+      blogGrid.innerHTML = '';
+      posts.forEach(p => {
+        const el = document.createElement('article');
+        el.className = 'bg-white border border-gray-100 rounded-2xl overflow-hidden shadow';
+        el.innerHTML = `
+          <img src="${p.img}" alt="${p.title}" class="h-40 w-full object-cover">
+          <div class="p-4">
+            <div class="text-sm text-gray-500">${p.date}</div>
+            <h3 class="mt-2 font-semibold">${p.title}</h3>
+            <button class="mt-3 text-civi-700 font-semibold">Read more →</button>
+          </div>
+        `;
+        blogGrid.appendChild(el);
+      });
+    }
+
+    // ---------- filtering ----------
+    function filterAndRenderJobs(){
+      const q = (qInput.value || '').trim().toLowerCase();
+      const loc = (locSelect.value || '').toLowerCase();
+      let list = jobs.slice();
+
+      if(activeCategory) list = list.filter(j => j.category === activeCategory);
+
+      if(q){
+        list = list.filter(j => {
+          return j.title.toLowerCase().includes(q) ||
+                 j.company.toLowerCase().includes(q) ||
+                 j.tags.some(t => t.toLowerCase().includes(q));
+        });
+      }
+
+      if(loc && loc !== 'remote'){
+        const L = loc.toLowerCase();
+        list = list.filter(j => j.location.toLowerCase().includes(L) || j.location.toLowerCase() === 'remote');
+      }
+
+      renderJobs(list);
+    }
+
+    // ---------- init ----------
+    renderCategories();
+    renderJobs(jobs);
+    renderCompanies();
+    renderBlog();
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ---------- events ----------
+    clearCatBtn.addEventListener('click', () => {
+      activeCategory = null;
+      document.querySelectorAll('#catsGrid > button').forEach(n => n.classList.remove('ring-2','ring-civi-500','scale-[1.01]'));
+      filterAndRenderJobs();
+    });
+
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      filterAndRenderJobs();
+      // on small screens, scroll to jobs list
+      const jobsSec = document.getElementById('jobs');
+      if(window.innerWidth < 768) jobsSec.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+
+    qInput.addEventListener('keydown', (e) => { if(e.key === 'Enter') filterAndRenderJobs(); });
+
+    document.getElementById('prevComp').addEventListener('click', () => {
+      compIndex = Math.max(0, compIndex - 1);
+      renderCompanies();
+    });
+    document.getElementById('nextComp').addEventListener('click', () => {
+      const per = window.innerWidth < 680 ? 1 : 2;
+      const pages = Math.ceil(companies.length / per);
+      compIndex = Math.min(pages - 1, compIndex + 1);
+      renderCompanies();
+    });
+
+    // header sticky glass on scroll
+    const header = document.getElementById('siteHeader');
+    function onScroll(){
+      if(window.scrollY > 12){
+        header.classList.add('backdrop-blur','glass','border-b','border-gray-100');
+      } else {
+        header.classList.remove('backdrop-blur','glass','border-b','border-gray-100');
+      }
+    }
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+
+    // mobile menu open/close
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileClose = document.getElementById('mobileClose');
+    mobileToggle.addEventListener('click', () => {
+      mobileNav.classList.add('open');
+      mobileNav.classList.toggle('hidden'); // ensure visible on older browsers
+      setTimeout(()=> mobileNav.classList.add('open'), 10);
+    });
+    mobileClose.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      setTimeout(()=> mobileNav.classList.add('hidden'), 280);
+    });
+
+    // intersection observer to animate sections
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.enter').forEach(node => observer.observe(node));
+
+    // responsive: re-render companies on resize
+    let to;
+    window.addEventListener('resize', () => {
+      clearTimeout(to);
+      to = setTimeout(() => {
+        renderCompanies();
+      }, 120);
+    });
+
+  </script>
+</body>
+</html>
+    

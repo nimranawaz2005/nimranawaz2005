@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Nimra's Netflix </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #141414; color: white; font-family: Arial, sans-serif; }
+    .movie-poster { transition: transform 0.3s; cursor: pointer; }
+    .movie-poster:hover { transform: scale(1.05); }
+    nav a { transition: color 0.2s; }
+    nav a:hover { color: #e50914; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="flex justify-between items-center px-8 py-4 bg-black bg-opacity-80 fixed top-0 left-0 w-full z-10">
+    <h1 class="text-2xl font-bold text-red-600">NIMRA'S NETFLIX</h1>
+    <nav class="flex space-x-6">
+      <a href="#" class="nav-link" data-category="All">Home</a>
+      <a href="#" class="nav-link" data-category="TV Shows">TV Shows</a>
+      <a href="#" class="nav-link" data-category="Movies">Movies</a>
+      <a href="#" class="nav-link" data-category="New & Popular">New & Popular</a>
+      <a href="#" class="nav-link" data-category="My List">My List</a>
+    </nav>
+  </header>
+
+  <!-- Content -->
+  <main class="pt-24 px-8">
+    <h2 class="text-xl font-bold mb-4" id="category-title">All</h2>
+    <div id="movie-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
+  </main>
+
+  <script>
+    // Movie database
+    const movies = [
+      { title: "Inception", img: "https://picsum.photos/300/450?random=1", type: "Movies" },
+      { title: "Breaking Bad", img: "https://picsum.photos/300/450?random=2", type: "TV Shows" },
+      { title: "Stranger Things", img: "https://picsum.photos/300/450?random=3", type: "TV Shows" },
+      { title: "Oppenheimer", img: "https://picsum.photos/300/450?random=4", type: "Movies" },
+      { title: "Money Heist", img: "https://picsum.photos/300/450?random=5", type: "TV Shows" },
+      { title: "Interstellar", img: "https://picsum.photos/300/450?random=6", type: "Movies" },
+      { title: "Squid Game", img: "https://picsum.photos/300/450?random=7", type: "New & Popular" },
+      { title: "The Witcher", img: "https://picsum.photos/300/450?random=8", type: "New & Popular" },
+    ];
+
+    let myList = [];
+
+    // Display movies by category
+    function displayMovies(category) {
+      const container = document.getElementById("movie-grid");
+      const title = document.getElementById("category-title");
+      title.textContent = category;
+
+      container.innerHTML = "";
+
+      let filteredMovies;
+      if (category === "All") {
+        filteredMovies = movies;
+      } else if (category === "My List") {
+        filteredMovies = myList;
+      } else {
+        filteredMovies = movies.filter(m => m.type === category);
+      }
+
+      filteredMovies.forEach(movie => {
+        const div = document.createElement("div");
+        div.innerHTML = `
+          <img src="${movie.img}" alt="${movie.title}" class="movie-poster rounded-lg" />
+          <p class="mt-2 text-sm">${movie.title}</p>
+          <button class="mt-1 text-xs text-red-500 add-to-list">+ My List</button>
+        `;
+        div.querySelector(".add-to-list").addEventListener("click", () => addToMyList(movie));
+        container.appendChild(div);
+      });
+    }
+
+    // Add movie to My List
+    function addToMyList(movie) {
+      if (!myList.some(m => m.title === movie.title)) {
+        myList.push(movie);
+        alert(`${movie.title} added to My List!`);
+      } else {
+        alert(`${movie.title} is already in My List.`);
+      }
+    }
+
+    // Event listeners for navbar
+    document.querySelectorAll(".nav-link").forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        const category = link.getAttribute("data-category");
+        displayMovies(category);
+      });
+    });
+
+    // Load all movies initially
+    displayMovies("All");
+  </script>
+</body>
+</html>

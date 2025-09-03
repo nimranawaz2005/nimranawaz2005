@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)file:///C:/Users/Nimra%20Nawaz/Untitled-2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Envato Elements </title>
+  <style>
+    /* ---------------- Global Styles ---------------- */
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {font-family: Arial, sans-serif; line-height: 1.6; background: #f9f9f9; color: #333;}
+    a {text-decoration: none; color: inherit;}
+    .container {width: 90%; margin: auto;}
+    img {max-width: 100%; display: block; border-radius: 10px;}
+
+    /* ---------------- Header ---------------- */
+    header {background: #fff; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 1000;}
+    .nav {display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;}
+    .logo {font-size: 1.5rem; font-weight: bold; color: #27ae60;}
+    .nav-links {list-style: none; display: flex; gap: 20px;}
+    .nav-links li a {color: #333; font-weight: 500; transition: color .3s;}
+    .nav-links li a:hover {color: #27ae60;}
+    .btn {background: #27ae60; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;}
+
+    /* ---------------- Hero ---------------- */
+    .hero {background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1500&q=80') no-repeat center/cover; height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white;}
+    .hero h1 {font-size: 3rem; max-width: 700px;}
+    .hero p {margin: 15px 0; font-size: 1.2rem;}
+    .search-bar {margin-top: 20px;}
+    .search-bar input {padding: 12px; width: 300px; border-radius: 5px; border: none; outline: none;}
+    .search-bar button {padding: 12px 20px; border: none; background: #27ae60; color: white; border-radius: 5px; cursor: pointer;}
+
+    /* ---------------- Categories ---------------- */
+    .categories {padding: 3rem 0; background: #fff;}
+    .categories h2 {text-align: center; margin-bottom: 2rem; font-size: 2rem;}
+    .cat-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;}
+    .cat-card {background: #f1f1f1; padding: 20px; text-align: center; border-radius: 10px; transition: transform .3s;}
+    .cat-card:hover {transform: translateY(-5px); background: #e9f7ef;}
+
+    /* ---------------- Trending ---------------- */
+    .trending {padding: 3rem 0;}
+    .trending h2 {text-align: center; margin-bottom: 2rem;}
+    .trend-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;}
+    .trend-card {background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform .3s;}
+    .trend-card:hover {transform: scale(1.03);}
+    .trend-card img {height: 180px; width: 100%; object-fit: cover;}
+    .trend-card p {padding: 15px;}
+
+    /* ---------------- Gallery ---------------- */
+    .gallery {padding: 3rem 0; background: #fff;}
+    .gallery h2 {text-align: center; margin-bottom: 2rem;}
+    .filter-bar {text-align: center; margin-bottom: 2rem;}
+    .filter-bar button {background: #eee; border: none; padding: 10px 20px; margin: 5px; border-radius: 5px; cursor: pointer;}
+    .filter-bar button.active {background: #27ae60; color: #fff;}
+    .gallery-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;}
+    .gallery-item {overflow: hidden; border-radius: 10px; display: none;}
+    .gallery-item img {transition: transform .3s;}
+    .gallery-item:hover img {transform: scale(1.1);}
+
+    /* ---------------- Pricing ---------------- */
+    .pricing {padding: 3rem 0;}
+    .pricing h2 {text-align: center; margin-bottom: 2rem;}
+    .pricing-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;}
+    .price-card {background: #fff; padding: 20px; text-align: center; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
+    .price-card h3 {margin-bottom: 10px;}
+    .price-card .price {font-size: 2rem; margin: 15px 0; color: #27ae60;}
+    .price-card button {background: #27ae60; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;}
+
+    /* ---------------- Footer ---------------- */
+    footer {background: #222; color: #fff; text-align: center; padding: 2rem 0; margin-top: 3rem;}
+
+    /* ---------------- Responsive ---------------- */
+    @media (max-width: 768px) {
+      .hero h1 {font-size: 2rem;}
+      .search-bar input {width: 200px;}
+      .nav-links {display: none;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">Envato </div>
+        <ul class="nav-links">
+          <li><a href="file:///C:/Users/Nimra%20Nawaz/Untitled-2.html#categories">Categories</a></li>
+          <li><a href="file:///C:/Users/Nimra%20Nawaz/Untitled-2.html#trending">Trending</a></li>
+          <li><a href="file:///C:/Users/Nimra%20Nawaz/Untitled-2.html#gallery">Gallery</a></li>
+          <li><a href="file:///C:/Users/Nimra%20Nawaz/Untitled-2.html#pricing">Pricing</a></li>
+        </ul>
+        <button class="btn">Sign Up</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div>
+      <h1>Unlimited creative assets for your projects</h1>
+      <p>Download millions of high-quality assets with one subscription</p>
+      <div class="search-bar">
+        <input type="text" placeholder="Search assets...">
+        <button>Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section id="categories" class="categories container">
+    <h2>Popular Categories</h2>
+    <div class="cat-grid">
+      <div class="cat-card">Graphics</div>
+      <div class="cat-card">Videos</div>
+      <div class="cat-card">Music</div>
+      <div class="cat-card">Templates</div>
+      <div class="cat-card">Fonts</div>
+      <div class="cat-card">Photos</div>
+    </div>
+  </section>
+
+  <!-- Trending -->
+  <section id="trending" class="trending container">
+    <h2>Trending Now</h2>
+    <div class="trend-grid">
+      <div class="trend-card"><img src="./Envato Elements_files/1015-600x400.jpg" alt=""><p>Modern Business Template</p></div>
+      <div class="trend-card"><img src="./Envato Elements_files/1025-600x400.jpg" alt=""><p>Abstract Backgrounds</p></div>
+      <div class="trend-card"><img src="./Envato Elements_files/1041-600x400.jpg" alt=""><p>Creative Presentation Pack</p></div>
+      <div class="trend-card"><img src="./Envato Elements_files/1057-600x400.jpg" alt=""><p>Startup Branding Kit</p></div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="gallery container">
+    <h2>Explore Gallery</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="graphics">Graphics</button>
+      <button class="filter-btn" data-filter="video">Video</button>
+      <button class="filter-btn" data-filter="music">Music</button>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item graphics" style="display: block;"><img src="./Envato Elements_files/1062-600x400.jpg"></div>
+      <div class="gallery-item video" style="display: block;"><img src="./Envato Elements_files/1069-600x400.jpg"></div>
+      <div class="gallery-item music" style="display: block;"><img src="./Envato Elements_files/1074-600x400.jpg"></div>
+      <div class="gallery-item graphics" style="display: block;"><img src="./Envato Elements_files/1077-600x400.jpg"></div>
+      <div class="gallery-item video" style="display: block;"><img src="./Envato Elements_files/1084-600x400.jpg"></div>
+      <div class="gallery-item music" style="display: block;"><img src="./Envato Elements_files/1081-600x400.jpg"></div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="pricing container">
+    <h2>Pricing Plans</h2>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Basic</h3>
+        <p class="price">$10/month</p>
+        <p>Access limited assets</p>
+        <button>Choose Plan</button>
+      </div>
+      <div class="price-card">
+        <h3>Pro</h3>
+        <p class="price">$29/month</p>
+        <p>Unlimited downloads</p>
+        <button>Choose Plan</button>
+      </div>
+      <div class="price-card">
+        <h3>Enterprise</h3>
+        <p class="price">$99/month</p>
+        <p>Team collaboration</p>
+        <button>Choose Plan</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Envato Elements Clone | Built with HTML, CSS &amp; JS</p>
+  </footer>
+
+  <!-- ---------------- JavaScript ---------------- -->
+  <script>
+    // Gallery filter functionality
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const galleryItems = document.querySelectorAll(".gallery-item");
+
+    function showItems(filter) {
+      galleryItems.forEach(item => {
+        if (filter === "all" || item.classList.contains(filter)) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        showItems(btn.dataset.filter);
+      });
+    });
+
+    // Show all items by default
+    showItems("all");
+  </script>
+
+
+</body></html>
